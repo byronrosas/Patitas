@@ -1,0 +1,83 @@
+﻿@model PatitasV01.Models.tbl_usuario
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_principal.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_pass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_pass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_direccion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.usu_codigo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

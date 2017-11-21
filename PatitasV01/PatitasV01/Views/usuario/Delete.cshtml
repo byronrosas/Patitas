@@ -1,0 +1,89 @@
+﻿@model PatitasV01.Models.tbl_usuario
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/_principal.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_pass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_pass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_direccion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

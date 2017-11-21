@@ -1,0 +1,76 @@
+﻿@model IEnumerable<PatitasV01.Models.tbl_usuario>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_principal.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_pass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_direccion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_cedula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_pass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_direccion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.usu_codigo }) |
+            @Html.ActionLink("Details", "Details", new { id=item.usu_codigo }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.usu_codigo })
+        </td>
+    </tr>
+}
+
+</table>
