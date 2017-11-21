@@ -1,0 +1,779 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDD_PATITASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tbl_cabeceraHClinica">
+          <Key>
+            <PropertyRef Name="chc_codigo" />
+          </Key>
+          <Property Name="chc_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="chc_fecha" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="mas_codigo" Type="int" Nullable="false" />
+          <Property Name="usu_codigo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_cita">
+          <Key>
+            <PropertyRef Name="cit_codigo" />
+          </Key>
+          <Property Name="cit_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cit_fecha" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="cit_hora" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="cit_descripcion" Type="nchar" MaxLength="200" />
+          <Property Name="usu_codigo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_detalleCita">
+          <Key>
+            <PropertyRef Name="dci_codigo" />
+          </Key>
+          <Property Name="dci_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cit_codigo" Type="int" Nullable="false" />
+          <Property Name="dci_descripcion" Type="nchar" MaxLength="200" />
+          <Property Name="ser_codigo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_detalleVenta">
+          <Key>
+            <PropertyRef Name="dev_codigo" />
+          </Key>
+          <Property Name="dev_codigo" Type="int" Nullable="false" />
+          <Property Name="dev_cantidad" Type="int" Nullable="false" />
+          <Property Name="ser_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dev_descripcion" Type="nchar" MaxLength="200" />
+          <Property Name="ven_codigo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_historiaClinica">
+          <Key>
+            <PropertyRef Name="hic_codigo" />
+          </Key>
+          <Property Name="hic_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hic_peso" Type="float" Nullable="false" />
+          <Property Name="hic_color" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="hic_pelaje" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="hic_temperatura" Type="float" Nullable="false" />
+          <Property Name="hic_frecuencia_cardica" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="hic_pulso" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="hic_fecha_atencion" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="hic_fecha_proxima_atencion" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="chc_codigo" Type="int" Nullable="false" />
+          <Property Name="ser_codigo" Type="int" Nullable="false" />
+          <Property Name="hic_diagnostico" Type="nchar" MaxLength="200" />
+          <Property Name="hic_sintomas" Type="nchar" MaxLength="200" />
+          <Property Name="hic_tratamiento" Type="nchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_mascota">
+          <Key>
+            <PropertyRef Name="mas_codigo" />
+          </Key>
+          <Property Name="mas_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mas_nombre" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="mas_fecha_nac" Type="nchar" MaxLength="10" />
+          <Property Name="mas_raza" Type="nchar" MaxLength="10" />
+          <Property Name="tim_codigo" Type="int" Nullable="false" />
+          <Property Name="mas_sexo" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_servicio">
+          <Key>
+            <PropertyRef Name="ser_codigo" />
+          </Key>
+          <Property Name="ser_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ser_nombre" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="ser_precio" Type="float" Nullable="false" />
+          <Property Name="ser_descripcion" Type="nchar" MaxLength="200" />
+          <Property Name="ser_iva" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_tiposMascota">
+          <Key>
+            <PropertyRef Name="tim_codigo" />
+          </Key>
+          <Property Name="tim_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tim_nombre" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="tim_descripcion" Type="nchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tbl_usuario">
+          <Key>
+            <PropertyRef Name="usu_codigo" />
+          </Key>
+          <Property Name="usu_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usu_nombres" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="usu_apellidos" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="usu_correo" Type="nchar" MaxLength="20" />
+          <Property Name="usu_telefono" Type="nchar" MaxLength="10" />
+          <Property Name="usu_cedula" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="usu_tipo" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="usu_pass" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="usu_direccion" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_venta">
+          <Key>
+            <PropertyRef Name="ven_codigo" />
+          </Key>
+          <Property Name="ven_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ven_fecha" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="usu_codigo" Type="int" Nullable="false" />
+          <Property Name="ven_subtotal" Type="float" Nullable="false" />
+          <Property Name="ven_total" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tbl_cabeceraHClinica_tbl_mascota">
+          <End Role="tbl_mascota" Type="Self.tbl_mascota" Multiplicity="1" />
+          <End Role="tbl_cabeceraHClinica" Type="Self.tbl_cabeceraHClinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_mascota">
+              <PropertyRef Name="mas_codigo" />
+            </Principal>
+            <Dependent Role="tbl_cabeceraHClinica">
+              <PropertyRef Name="mas_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_cabeceraHClinica_tbl_usuario">
+          <End Role="tbl_usuario" Type="Self.tbl_usuario" Multiplicity="1" />
+          <End Role="tbl_cabeceraHClinica" Type="Self.tbl_cabeceraHClinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_usuario">
+              <PropertyRef Name="usu_codigo" />
+            </Principal>
+            <Dependent Role="tbl_cabeceraHClinica">
+              <PropertyRef Name="usu_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleCita_tbl_cita">
+          <End Role="tbl_cita" Type="Self.tbl_cita" Multiplicity="1" />
+          <End Role="tbl_detalleCita" Type="Self.tbl_detalleCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_cita">
+              <PropertyRef Name="cit_codigo" />
+            </Principal>
+            <Dependent Role="tbl_detalleCita">
+              <PropertyRef Name="cit_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleCita_tbl_servicio">
+          <End Role="tbl_servicio" Type="Self.tbl_servicio" Multiplicity="1" />
+          <End Role="tbl_detalleCita" Type="Self.tbl_detalleCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_servicio">
+              <PropertyRef Name="ser_codigo" />
+            </Principal>
+            <Dependent Role="tbl_detalleCita">
+              <PropertyRef Name="ser_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleVenta_tbl_servicio">
+          <End Role="tbl_servicio" Type="Self.tbl_servicio" Multiplicity="1" />
+          <End Role="tbl_detalleVenta" Type="Self.tbl_detalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_servicio">
+              <PropertyRef Name="ser_codigo" />
+            </Principal>
+            <Dependent Role="tbl_detalleVenta">
+              <PropertyRef Name="ser_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleVenta_tbl_venta">
+          <End Role="tbl_venta" Type="Self.tbl_venta" Multiplicity="1" />
+          <End Role="tbl_detalleVenta" Type="Self.tbl_detalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_venta">
+              <PropertyRef Name="ven_codigo" />
+            </Principal>
+            <Dependent Role="tbl_detalleVenta">
+              <PropertyRef Name="ven_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_historiaClinica_tbl_cabeceraHClinica">
+          <End Role="tbl_cabeceraHClinica" Type="Self.tbl_cabeceraHClinica" Multiplicity="1" />
+          <End Role="tbl_historiaClinica" Type="Self.tbl_historiaClinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_cabeceraHClinica">
+              <PropertyRef Name="chc_codigo" />
+            </Principal>
+            <Dependent Role="tbl_historiaClinica">
+              <PropertyRef Name="chc_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_historiaClinica_tbl_servicio">
+          <End Role="tbl_servicio" Type="Self.tbl_servicio" Multiplicity="1" />
+          <End Role="tbl_historiaClinica" Type="Self.tbl_historiaClinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_servicio">
+              <PropertyRef Name="ser_codigo" />
+            </Principal>
+            <Dependent Role="tbl_historiaClinica">
+              <PropertyRef Name="ser_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_mascota_tbl_tiposMascota">
+          <End Role="tbl_tiposMascota" Type="Self.tbl_tiposMascota" Multiplicity="1" />
+          <End Role="tbl_mascota" Type="Self.tbl_mascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_tiposMascota">
+              <PropertyRef Name="tim_codigo" />
+            </Principal>
+            <Dependent Role="tbl_mascota">
+              <PropertyRef Name="tim_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_venta_tbl_usuario">
+          <End Role="tbl_usuario" Type="Self.tbl_usuario" Multiplicity="1" />
+          <End Role="tbl_venta" Type="Self.tbl_venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_usuario">
+              <PropertyRef Name="usu_codigo" />
+            </Principal>
+            <Dependent Role="tbl_venta">
+              <PropertyRef Name="usu_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDD_PATITASModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_cabeceraHClinica" EntityType="Self.tbl_cabeceraHClinica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_cita" EntityType="Self.tbl_cita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_detalleCita" EntityType="Self.tbl_detalleCita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_detalleVenta" EntityType="Self.tbl_detalleVenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_historiaClinica" EntityType="Self.tbl_historiaClinica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_mascota" EntityType="Self.tbl_mascota" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_servicio" EntityType="Self.tbl_servicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_tiposMascota" EntityType="Self.tbl_tiposMascota" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_usuario" EntityType="Self.tbl_usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_venta" EntityType="Self.tbl_venta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_cabeceraHClinica_tbl_mascota" Association="Self.FK_tbl_cabeceraHClinica_tbl_mascota">
+            <End Role="tbl_mascota" EntitySet="tbl_mascota" />
+            <End Role="tbl_cabeceraHClinica" EntitySet="tbl_cabeceraHClinica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_cabeceraHClinica_tbl_usuario" Association="Self.FK_tbl_cabeceraHClinica_tbl_usuario">
+            <End Role="tbl_usuario" EntitySet="tbl_usuario" />
+            <End Role="tbl_cabeceraHClinica" EntitySet="tbl_cabeceraHClinica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleCita_tbl_cita" Association="Self.FK_tbl_detalleCita_tbl_cita">
+            <End Role="tbl_cita" EntitySet="tbl_cita" />
+            <End Role="tbl_detalleCita" EntitySet="tbl_detalleCita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleCita_tbl_servicio" Association="Self.FK_tbl_detalleCita_tbl_servicio">
+            <End Role="tbl_servicio" EntitySet="tbl_servicio" />
+            <End Role="tbl_detalleCita" EntitySet="tbl_detalleCita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleVenta_tbl_servicio" Association="Self.FK_tbl_detalleVenta_tbl_servicio">
+            <End Role="tbl_servicio" EntitySet="tbl_servicio" />
+            <End Role="tbl_detalleVenta" EntitySet="tbl_detalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleVenta_tbl_venta" Association="Self.FK_tbl_detalleVenta_tbl_venta">
+            <End Role="tbl_venta" EntitySet="tbl_venta" />
+            <End Role="tbl_detalleVenta" EntitySet="tbl_detalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_historiaClinica_tbl_cabeceraHClinica" Association="Self.FK_tbl_historiaClinica_tbl_cabeceraHClinica">
+            <End Role="tbl_cabeceraHClinica" EntitySet="tbl_cabeceraHClinica" />
+            <End Role="tbl_historiaClinica" EntitySet="tbl_historiaClinica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_historiaClinica_tbl_servicio" Association="Self.FK_tbl_historiaClinica_tbl_servicio">
+            <End Role="tbl_servicio" EntitySet="tbl_servicio" />
+            <End Role="tbl_historiaClinica" EntitySet="tbl_historiaClinica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_mascota_tbl_tiposMascota" Association="Self.FK_tbl_mascota_tbl_tiposMascota">
+            <End Role="tbl_tiposMascota" EntitySet="tbl_tiposMascota" />
+            <End Role="tbl_mascota" EntitySet="tbl_mascota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_venta_tbl_usuario" Association="Self.FK_tbl_venta_tbl_usuario">
+            <End Role="tbl_usuario" EntitySet="tbl_usuario" />
+            <End Role="tbl_venta" EntitySet="tbl_venta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDD_PATITASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbl_cabeceraHClinica">
+          <Key>
+            <PropertyRef Name="chc_codigo" />
+          </Key>
+          <Property Name="chc_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chc_fecha" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="mas_codigo" Type="Int32" Nullable="false" />
+          <Property Name="usu_codigo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_mascota" Relationship="Self.FK_tbl_cabeceraHClinica_tbl_mascota" FromRole="tbl_cabeceraHClinica" ToRole="tbl_mascota" />
+          <NavigationProperty Name="tbl_usuario" Relationship="Self.FK_tbl_cabeceraHClinica_tbl_usuario" FromRole="tbl_cabeceraHClinica" ToRole="tbl_usuario" />
+          <NavigationProperty Name="tbl_historiaClinica" Relationship="Self.FK_tbl_historiaClinica_tbl_cabeceraHClinica" FromRole="tbl_cabeceraHClinica" ToRole="tbl_historiaClinica" />
+        </EntityType>
+        <EntityType Name="tbl_cita">
+          <Key>
+            <PropertyRef Name="cit_codigo" />
+          </Key>
+          <Property Name="cit_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cit_fecha" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="cit_hora" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="cit_descripcion" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="usu_codigo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_detalleCita" Relationship="Self.FK_tbl_detalleCita_tbl_cita" FromRole="tbl_cita" ToRole="tbl_detalleCita" />
+        </EntityType>
+        <EntityType Name="tbl_detalleCita">
+          <Key>
+            <PropertyRef Name="dci_codigo" />
+          </Key>
+          <Property Name="dci_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cit_codigo" Type="Int32" Nullable="false" />
+          <Property Name="dci_descripcion" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="ser_codigo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_cita" Relationship="Self.FK_tbl_detalleCita_tbl_cita" FromRole="tbl_detalleCita" ToRole="tbl_cita" />
+          <NavigationProperty Name="tbl_servicio" Relationship="Self.FK_tbl_detalleCita_tbl_servicio" FromRole="tbl_detalleCita" ToRole="tbl_servicio" />
+        </EntityType>
+        <EntityType Name="tbl_detalleVenta">
+          <Key>
+            <PropertyRef Name="dev_codigo" />
+          </Key>
+          <Property Name="dev_codigo" Type="Int32" Nullable="false" />
+          <Property Name="dev_cantidad" Type="Int32" Nullable="false" />
+          <Property Name="ser_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dev_descripcion" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="ven_codigo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_servicio" Relationship="Self.FK_tbl_detalleVenta_tbl_servicio" FromRole="tbl_detalleVenta" ToRole="tbl_servicio" />
+          <NavigationProperty Name="tbl_venta" Relationship="Self.FK_tbl_detalleVenta_tbl_venta" FromRole="tbl_detalleVenta" ToRole="tbl_venta" />
+        </EntityType>
+        <EntityType Name="tbl_historiaClinica">
+          <Key>
+            <PropertyRef Name="hic_codigo" />
+          </Key>
+          <Property Name="hic_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hic_peso" Type="Double" Nullable="false" />
+          <Property Name="hic_color" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="hic_pelaje" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="hic_temperatura" Type="Double" Nullable="false" />
+          <Property Name="hic_frecuencia_cardica" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="hic_pulso" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="hic_fecha_atencion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="hic_fecha_proxima_atencion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="chc_codigo" Type="Int32" Nullable="false" />
+          <Property Name="ser_codigo" Type="Int32" Nullable="false" />
+          <Property Name="hic_diagnostico" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="hic_sintomas" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="hic_tratamiento" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbl_cabeceraHClinica" Relationship="Self.FK_tbl_historiaClinica_tbl_cabeceraHClinica" FromRole="tbl_historiaClinica" ToRole="tbl_cabeceraHClinica" />
+          <NavigationProperty Name="tbl_servicio" Relationship="Self.FK_tbl_historiaClinica_tbl_servicio" FromRole="tbl_historiaClinica" ToRole="tbl_servicio" />
+        </EntityType>
+        <EntityType Name="tbl_mascota">
+          <Key>
+            <PropertyRef Name="mas_codigo" />
+          </Key>
+          <Property Name="mas_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mas_nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="mas_fecha_nac" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="mas_raza" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="tim_codigo" Type="Int32" Nullable="false" />
+          <Property Name="mas_sexo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbl_cabeceraHClinica" Relationship="Self.FK_tbl_cabeceraHClinica_tbl_mascota" FromRole="tbl_mascota" ToRole="tbl_cabeceraHClinica" />
+          <NavigationProperty Name="tbl_tiposMascota" Relationship="Self.FK_tbl_mascota_tbl_tiposMascota" FromRole="tbl_mascota" ToRole="tbl_tiposMascota" />
+        </EntityType>
+        <EntityType Name="tbl_servicio">
+          <Key>
+            <PropertyRef Name="ser_codigo" />
+          </Key>
+          <Property Name="ser_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ser_nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ser_precio" Type="Double" Nullable="false" />
+          <Property Name="ser_descripcion" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="ser_iva" Type="Double" Nullable="false" />
+          <NavigationProperty Name="tbl_detalleCita" Relationship="Self.FK_tbl_detalleCita_tbl_servicio" FromRole="tbl_servicio" ToRole="tbl_detalleCita" />
+          <NavigationProperty Name="tbl_detalleVenta" Relationship="Self.FK_tbl_detalleVenta_tbl_servicio" FromRole="tbl_servicio" ToRole="tbl_detalleVenta" />
+          <NavigationProperty Name="tbl_historiaClinica" Relationship="Self.FK_tbl_historiaClinica_tbl_servicio" FromRole="tbl_servicio" ToRole="tbl_historiaClinica" />
+        </EntityType>
+        <EntityType Name="tbl_tiposMascota">
+          <Key>
+            <PropertyRef Name="tim_codigo" />
+          </Key>
+          <Property Name="tim_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tim_nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tim_descripcion" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tbl_mascota" Relationship="Self.FK_tbl_mascota_tbl_tiposMascota" FromRole="tbl_tiposMascota" ToRole="tbl_mascota" />
+        </EntityType>
+        <EntityType Name="tbl_usuario">
+          <Key>
+            <PropertyRef Name="usu_codigo" />
+          </Key>
+          <Property Name="usu_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usu_nombres" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="usu_apellidos" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="usu_correo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="usu_telefono" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="usu_cedula" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="usu_tipo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="usu_pass" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="usu_direccion" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tbl_cabeceraHClinica" Relationship="Self.FK_tbl_cabeceraHClinica_tbl_usuario" FromRole="tbl_usuario" ToRole="tbl_cabeceraHClinica" />
+          <NavigationProperty Name="tbl_venta" Relationship="Self.FK_tbl_venta_tbl_usuario" FromRole="tbl_usuario" ToRole="tbl_venta" />
+        </EntityType>
+        <EntityType Name="tbl_venta">
+          <Key>
+            <PropertyRef Name="ven_codigo" />
+          </Key>
+          <Property Name="ven_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ven_fecha" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="usu_codigo" Type="Int32" Nullable="false" />
+          <Property Name="ven_subtotal" Type="Double" Nullable="false" />
+          <Property Name="ven_total" Type="Double" Nullable="false" />
+          <NavigationProperty Name="tbl_detalleVenta" Relationship="Self.FK_tbl_detalleVenta_tbl_venta" FromRole="tbl_venta" ToRole="tbl_detalleVenta" />
+          <NavigationProperty Name="tbl_usuario" Relationship="Self.FK_tbl_venta_tbl_usuario" FromRole="tbl_venta" ToRole="tbl_usuario" />
+        </EntityType>
+        <Association Name="FK_tbl_cabeceraHClinica_tbl_mascota">
+          <End Role="tbl_mascota" Type="Self.tbl_mascota" Multiplicity="1" />
+          <End Role="tbl_cabeceraHClinica" Type="Self.tbl_cabeceraHClinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_mascota">
+              <PropertyRef Name="mas_codigo" />
+            </Principal>
+            <Dependent Role="tbl_cabeceraHClinica">
+              <PropertyRef Name="mas_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_cabeceraHClinica_tbl_usuario">
+          <End Role="tbl_usuario" Type="Self.tbl_usuario" Multiplicity="1" />
+          <End Role="tbl_cabeceraHClinica" Type="Self.tbl_cabeceraHClinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_usuario">
+              <PropertyRef Name="usu_codigo" />
+            </Principal>
+            <Dependent Role="tbl_cabeceraHClinica">
+              <PropertyRef Name="usu_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_historiaClinica_tbl_cabeceraHClinica">
+          <End Role="tbl_cabeceraHClinica" Type="Self.tbl_cabeceraHClinica" Multiplicity="1" />
+          <End Role="tbl_historiaClinica" Type="Self.tbl_historiaClinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_cabeceraHClinica">
+              <PropertyRef Name="chc_codigo" />
+            </Principal>
+            <Dependent Role="tbl_historiaClinica">
+              <PropertyRef Name="chc_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleCita_tbl_cita">
+          <End Role="tbl_cita" Type="Self.tbl_cita" Multiplicity="1" />
+          <End Role="tbl_detalleCita" Type="Self.tbl_detalleCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_cita">
+              <PropertyRef Name="cit_codigo" />
+            </Principal>
+            <Dependent Role="tbl_detalleCita">
+              <PropertyRef Name="cit_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleCita_tbl_servicio">
+          <End Role="tbl_servicio" Type="Self.tbl_servicio" Multiplicity="1" />
+          <End Role="tbl_detalleCita" Type="Self.tbl_detalleCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_servicio">
+              <PropertyRef Name="ser_codigo" />
+            </Principal>
+            <Dependent Role="tbl_detalleCita">
+              <PropertyRef Name="ser_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleVenta_tbl_servicio">
+          <End Role="tbl_servicio" Type="Self.tbl_servicio" Multiplicity="1" />
+          <End Role="tbl_detalleVenta" Type="Self.tbl_detalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_servicio">
+              <PropertyRef Name="ser_codigo" />
+            </Principal>
+            <Dependent Role="tbl_detalleVenta">
+              <PropertyRef Name="ser_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detalleVenta_tbl_venta">
+          <End Role="tbl_venta" Type="Self.tbl_venta" Multiplicity="1" />
+          <End Role="tbl_detalleVenta" Type="Self.tbl_detalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_venta">
+              <PropertyRef Name="ven_codigo" />
+            </Principal>
+            <Dependent Role="tbl_detalleVenta">
+              <PropertyRef Name="ven_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_historiaClinica_tbl_servicio">
+          <End Role="tbl_servicio" Type="Self.tbl_servicio" Multiplicity="1" />
+          <End Role="tbl_historiaClinica" Type="Self.tbl_historiaClinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_servicio">
+              <PropertyRef Name="ser_codigo" />
+            </Principal>
+            <Dependent Role="tbl_historiaClinica">
+              <PropertyRef Name="ser_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_mascota_tbl_tiposMascota">
+          <End Role="tbl_tiposMascota" Type="Self.tbl_tiposMascota" Multiplicity="1" />
+          <End Role="tbl_mascota" Type="Self.tbl_mascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_tiposMascota">
+              <PropertyRef Name="tim_codigo" />
+            </Principal>
+            <Dependent Role="tbl_mascota">
+              <PropertyRef Name="tim_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_venta_tbl_usuario">
+          <End Role="tbl_usuario" Type="Self.tbl_usuario" Multiplicity="1" />
+          <End Role="tbl_venta" Type="Self.tbl_venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_usuario">
+              <PropertyRef Name="usu_codigo" />
+            </Principal>
+            <Dependent Role="tbl_venta">
+              <PropertyRef Name="usu_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDD_PATITASEntitiesGeneral" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tbl_cabeceraHClinica" EntityType="Self.tbl_cabeceraHClinica" />
+          <EntitySet Name="tbl_cita" EntityType="Self.tbl_cita" />
+          <EntitySet Name="tbl_detalleCita" EntityType="Self.tbl_detalleCita" />
+          <EntitySet Name="tbl_detalleVenta" EntityType="Self.tbl_detalleVenta" />
+          <EntitySet Name="tbl_historiaClinica" EntityType="Self.tbl_historiaClinica" />
+          <EntitySet Name="tbl_mascota" EntityType="Self.tbl_mascota" />
+          <EntitySet Name="tbl_servicio" EntityType="Self.tbl_servicio" />
+          <EntitySet Name="tbl_tiposMascota" EntityType="Self.tbl_tiposMascota" />
+          <EntitySet Name="tbl_usuario" EntityType="Self.tbl_usuario" />
+          <EntitySet Name="tbl_venta" EntityType="Self.tbl_venta" />
+          <AssociationSet Name="FK_tbl_cabeceraHClinica_tbl_mascota" Association="Self.FK_tbl_cabeceraHClinica_tbl_mascota">
+            <End Role="tbl_mascota" EntitySet="tbl_mascota" />
+            <End Role="tbl_cabeceraHClinica" EntitySet="tbl_cabeceraHClinica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_cabeceraHClinica_tbl_usuario" Association="Self.FK_tbl_cabeceraHClinica_tbl_usuario">
+            <End Role="tbl_usuario" EntitySet="tbl_usuario" />
+            <End Role="tbl_cabeceraHClinica" EntitySet="tbl_cabeceraHClinica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_historiaClinica_tbl_cabeceraHClinica" Association="Self.FK_tbl_historiaClinica_tbl_cabeceraHClinica">
+            <End Role="tbl_cabeceraHClinica" EntitySet="tbl_cabeceraHClinica" />
+            <End Role="tbl_historiaClinica" EntitySet="tbl_historiaClinica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleCita_tbl_cita" Association="Self.FK_tbl_detalleCita_tbl_cita">
+            <End Role="tbl_cita" EntitySet="tbl_cita" />
+            <End Role="tbl_detalleCita" EntitySet="tbl_detalleCita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleCita_tbl_servicio" Association="Self.FK_tbl_detalleCita_tbl_servicio">
+            <End Role="tbl_servicio" EntitySet="tbl_servicio" />
+            <End Role="tbl_detalleCita" EntitySet="tbl_detalleCita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleVenta_tbl_servicio" Association="Self.FK_tbl_detalleVenta_tbl_servicio">
+            <End Role="tbl_servicio" EntitySet="tbl_servicio" />
+            <End Role="tbl_detalleVenta" EntitySet="tbl_detalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detalleVenta_tbl_venta" Association="Self.FK_tbl_detalleVenta_tbl_venta">
+            <End Role="tbl_venta" EntitySet="tbl_venta" />
+            <End Role="tbl_detalleVenta" EntitySet="tbl_detalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_historiaClinica_tbl_servicio" Association="Self.FK_tbl_historiaClinica_tbl_servicio">
+            <End Role="tbl_servicio" EntitySet="tbl_servicio" />
+            <End Role="tbl_historiaClinica" EntitySet="tbl_historiaClinica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_mascota_tbl_tiposMascota" Association="Self.FK_tbl_mascota_tbl_tiposMascota">
+            <End Role="tbl_tiposMascota" EntitySet="tbl_tiposMascota" />
+            <End Role="tbl_mascota" EntitySet="tbl_mascota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_venta_tbl_usuario" Association="Self.FK_tbl_venta_tbl_usuario">
+            <End Role="tbl_usuario" EntitySet="tbl_usuario" />
+            <End Role="tbl_venta" EntitySet="tbl_venta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDD_PATITASModelStoreContainer" CdmEntityContainer="BDD_PATITASEntitiesGeneral">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BDD_PATITASModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_cabeceraHClinica">
+            <EntityTypeMapping TypeName="BDD_PATITASModel.tbl_cabeceraHClinica">
+              <MappingFragment StoreEntitySet="tbl_cabeceraHClinica">
+                <ScalarProperty Name="chc_codigo" ColumnName="chc_codigo" />
+                <ScalarProperty Name="chc_fecha" ColumnName="chc_fecha" />
+                <ScalarProperty Name="mas_codigo" ColumnName="mas_codigo" />
+                <ScalarProperty Name="usu_codigo" ColumnName="usu_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_cita">
+            <EntityTypeMapping TypeName="BDD_PATITASModel.tbl_cita">
+              <MappingFragment StoreEntitySet="tbl_cita">
+                <ScalarProperty Name="cit_codigo" ColumnName="cit_codigo" />
+                <ScalarProperty Name="cit_fecha" ColumnName="cit_fecha" />
+                <ScalarProperty Name="cit_hora" ColumnName="cit_hora" />
+                <ScalarProperty Name="cit_descripcion" ColumnName="cit_descripcion" />
+                <ScalarProperty Name="usu_codigo" ColumnName="usu_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_detalleCita">
+            <EntityTypeMapping TypeName="BDD_PATITASModel.tbl_detalleCita">
+              <MappingFragment StoreEntitySet="tbl_detalleCita">
+                <ScalarProperty Name="dci_codigo" ColumnName="dci_codigo" />
+                <ScalarProperty Name="cit_codigo" ColumnName="cit_codigo" />
+                <ScalarProperty Name="dci_descripcion" ColumnName="dci_descripcion" />
+                <ScalarProperty Name="ser_codigo" ColumnName="ser_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_detalleVenta">
+            <EntityTypeMapping TypeName="BDD_PATITASModel.tbl_detalleVenta">
+              <MappingFragment StoreEntitySet="tbl_detalleVenta">
+                <ScalarProperty Name="dev_codigo" ColumnName="dev_codigo" />
+                <ScalarProperty Name="dev_cantidad" ColumnName="dev_cantidad" />
+                <ScalarProperty Name="ser_codigo" ColumnName="ser_codigo" />
+                <ScalarProperty Name="dev_descripcion" ColumnName="dev_descripcion" />
+                <ScalarProperty Name="ven_codigo" ColumnName="ven_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_historiaClinica">
+            <EntityTypeMapping TypeName="BDD_PATITASModel.tbl_historiaClinica">
+              <MappingFragment StoreEntitySet="tbl_historiaClinica">
+                <ScalarProperty Name="hic_codigo" ColumnName="hic_codigo" />
+                <ScalarProperty Name="hic_peso" ColumnName="hic_peso" />
+                <ScalarProperty Name="hic_color" ColumnName="hic_color" />
+                <ScalarProperty Name="hic_pelaje" ColumnName="hic_pelaje" />
+                <ScalarProperty Name="hic_temperatura" ColumnName="hic_temperatura" />
+                <ScalarProperty Name="hic_frecuencia_cardica" ColumnName="hic_frecuencia_cardica" />
+                <ScalarProperty Name="hic_pulso" ColumnName="hic_pulso" />
+                <ScalarProperty Name="hic_fecha_atencion" ColumnName="hic_fecha_atencion" />
+                <ScalarProperty Name="hic_fecha_proxima_atencion" ColumnName="hic_fecha_proxima_atencion" />
+                <ScalarProperty Name="chc_codigo" ColumnName="chc_codigo" />
+                <ScalarProperty Name="ser_codigo" ColumnName="ser_codigo" />
+                <ScalarProperty Name="hic_diagnostico" ColumnName="hic_diagnostico" />
+                <ScalarProperty Name="hic_sintomas" ColumnName="hic_sintomas" />
+                <ScalarProperty Name="hic_tratamiento" ColumnName="hic_tratamiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_mascota">
+            <EntityTypeMapping TypeName="BDD_PATITASModel.tbl_mascota">
+              <MappingFragment StoreEntitySet="tbl_mascota">
+                <ScalarProperty Name="mas_codigo" ColumnName="mas_codigo" />
+                <ScalarProperty Name="mas_nombre" ColumnName="mas_nombre" />
+                <ScalarProperty Name="mas_fecha_nac" ColumnName="mas_fecha_nac" />
+                <ScalarProperty Name="mas_raza" ColumnName="mas_raza" />
+                <ScalarProperty Name="tim_codigo" ColumnName="tim_codigo" />
+                <ScalarProperty Name="mas_sexo" ColumnName="mas_sexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_servicio">
+            <EntityTypeMapping TypeName="BDD_PATITASModel.tbl_servicio">
+              <MappingFragment StoreEntitySet="tbl_servicio">
+                <ScalarProperty Name="ser_codigo" ColumnName="ser_codigo" />
+                <ScalarProperty Name="ser_nombre" ColumnName="ser_nombre" />
+                <ScalarProperty Name="ser_precio" ColumnName="ser_precio" />
+                <ScalarProperty Name="ser_descripcion" ColumnName="ser_descripcion" />
+                <ScalarProperty Name="ser_iva" ColumnName="ser_iva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_tiposMascota">
+            <EntityTypeMapping TypeName="BDD_PATITASModel.tbl_tiposMascota">
+              <MappingFragment StoreEntitySet="tbl_tiposMascota">
+                <ScalarProperty Name="tim_codigo" ColumnName="tim_codigo" />
+                <ScalarProperty Name="tim_nombre" ColumnName="tim_nombre" />
+                <ScalarProperty Name="tim_descripcion" ColumnName="tim_descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_usuario">
+            <EntityTypeMapping TypeName="BDD_PATITASModel.tbl_usuario">
+              <MappingFragment StoreEntitySet="tbl_usuario">
+                <ScalarProperty Name="usu_codigo" ColumnName="usu_codigo" />
+                <ScalarProperty Name="usu_nombres" ColumnName="usu_nombres" />
+                <ScalarProperty Name="usu_apellidos" ColumnName="usu_apellidos" />
+                <ScalarProperty Name="usu_correo" ColumnName="usu_correo" />
+                <ScalarProperty Name="usu_telefono" ColumnName="usu_telefono" />
+                <ScalarProperty Name="usu_cedula" ColumnName="usu_cedula" />
+                <ScalarProperty Name="usu_tipo" ColumnName="usu_tipo" />
+                <ScalarProperty Name="usu_pass" ColumnName="usu_pass" />
+                <ScalarProperty Name="usu_direccion" ColumnName="usu_direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_venta">
+            <EntityTypeMapping TypeName="BDD_PATITASModel.tbl_venta">
+              <MappingFragment StoreEntitySet="tbl_venta">
+                <ScalarProperty Name="ven_codigo" ColumnName="ven_codigo" />
+                <ScalarProperty Name="ven_fecha" ColumnName="ven_fecha" />
+                <ScalarProperty Name="usu_codigo" ColumnName="usu_codigo" />
+                <ScalarProperty Name="ven_subtotal" ColumnName="ven_subtotal" />
+                <ScalarProperty Name="ven_total" ColumnName="ven_total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
