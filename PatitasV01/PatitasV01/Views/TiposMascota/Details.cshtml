@@ -1,0 +1,35 @@
+﻿@model PatitasV01.Models.tbl_tiposMascota
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_principal.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_tiposMascota</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tim_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tim_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tim_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tim_descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.tim_codigo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

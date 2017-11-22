@@ -1,0 +1,58 @@
+﻿@model IEnumerable<PatitasV01.Models.tbl_mascota>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_principal.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.mas_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mas_fecha_nac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mas_raza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mas_sexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_tiposMascota.tim_nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.mas_nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mas_fecha_nac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mas_raza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mas_sexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_tiposMascota.tim_nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.mas_codigo }) |
+            @Html.ActionLink("Details", "Details", new { id=item.mas_codigo }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.mas_codigo })
+        </td>
+    </tr>
+}
+
+</table>

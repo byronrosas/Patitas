@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PatitasV01.Models.tbl_tiposMascota>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_principal.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tim_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tim_descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tim_nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tim_descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.tim_codigo }) |
+            @Html.ActionLink("Details", "Details", new { id=item.tim_codigo }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.tim_codigo })
+        </td>
+    </tr>
+}
+
+</table>

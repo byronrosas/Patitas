@@ -375,6 +375,8 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\mascotaController.cs" />
+    <Compile Include="Controllers\TiposMascotaController.cs" />
     <Compile Include="Controllers\usuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -501,6 +503,16 @@
     <Content Include="Views\usuario\Details.cshtml" />
     <Content Include="Views\usuario\Edit.cshtml" />
     <Content Include="Views\usuario\Index.cshtml" />
+    <Content Include="Views\TiposMascota\Create.cshtml" />
+    <Content Include="Views\TiposMascota\Delete.cshtml" />
+    <Content Include="Views\TiposMascota\Details.cshtml" />
+    <Content Include="Views\TiposMascota\Edit.cshtml" />
+    <Content Include="Views\TiposMascota\Index.cshtml" />
+    <Content Include="Views\mascota\Create.cshtml" />
+    <Content Include="Views\mascota\Delete.cshtml" />
+    <Content Include="Views\mascota\Details.cshtml" />
+    <Content Include="Views\mascota\Edit.cshtml" />
+    <Content Include="Views\mascota\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
