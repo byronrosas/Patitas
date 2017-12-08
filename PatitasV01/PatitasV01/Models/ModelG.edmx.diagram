@@ -26,6 +26,7 @@
         <AssociationConnector Association="BDD_PATITASModel.FK_tbl_historiaClinica_tbl_servicio" ManuallyRouted="false" />
         <AssociationConnector Association="BDD_PATITASModel.FK_tbl_mascota_tbl_tiposMascota" ManuallyRouted="false" />
         <AssociationConnector Association="BDD_PATITASModel.FK_tbl_venta_tbl_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BDD_PATITASModel.FK_tbl_cita_tbl_usuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -99,10 +99,20 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\agency.css" />
+    <Content Include="Content\css\agency.min.css" />
     <Content Include="Content\dist\css\sb-admin-2.css" />
     <Content Include="Content\dist\css\sb-admin-2.min.css" />
     <Content Include="Content\dist\js\sb-admin-2.js" />
     <Content Include="Content\dist\js\sb-admin-2.min.js" />
+    <Content Include="Content\img\banner.png" />
+    <Content Include="Content\img\d.jpg" />
+    <Content Include="Content\img\left-col.png" />
+    <Content Include="Content\img\map-image.png" />
+    <Content Include="Content\img\header-bg.jpg" />
+    <Content Include="Content\img\team\1.jpg" />
+    <Content Include="Content\img\team\2.jpg" />
+    <Content Include="Content\img\team\3.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\vendor\bootstrap-social\bootstrap-social.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap.css" />
@@ -280,6 +290,10 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\js\agency.js" />
+    <Content Include="Scripts\js\agency.min.js" />
+    <Content Include="Scripts\js\contact_me.js" />
+    <Content Include="Scripts\js\jqBootstrapValidation.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\vendor\bootstrap-social\bootstrap-social.css" />
     <Content Include="Scripts\vendor\bootstrap\css\bootstrap.css" />
@@ -374,10 +388,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CabeceraHistoriaClinicaController.cs" />
+    <Compile Include="Controllers\detalleCitaController.cs" />
+    <Compile Include="Controllers\DetalleVentaController.cs" />
+    <Compile Include="Controllers\HistoriaClinicaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\loginController.cs" />
     <Compile Include="Controllers\mascotaController.cs" />
+    <Compile Include="Controllers\servicioController.cs" />
+    <Compile Include="Controllers\tbl_citaController.cs" />
     <Compile Include="Controllers\TiposMascotaController.cs" />
     <Compile Include="Controllers\usuarioController.cs" />
+    <Compile Include="Controllers\ventaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -513,6 +535,43 @@
     <Content Include="Views\mascota\Details.cshtml" />
     <Content Include="Views\mascota\Edit.cshtml" />
     <Content Include="Views\mascota\Index.cshtml" />
+    <Content Include="Views\_LayoutLogin.cshtml" />
+    <Content Include="Views\login\Index.cshtml" />
+    <Content Include="Views\detalleCita\Create.cshtml" />
+    <Content Include="Views\detalleCita\Delete.cshtml" />
+    <Content Include="Views\detalleCita\Details.cshtml" />
+    <Content Include="Views\detalleCita\Edit.cshtml" />
+    <Content Include="Views\detalleCita\Index.cshtml" />
+    <Content Include="Views\CabeceraHistoriaClinica\Create.cshtml" />
+    <Content Include="Views\CabeceraHistoriaClinica\Delete.cshtml" />
+    <Content Include="Views\CabeceraHistoriaClinica\Details.cshtml" />
+    <Content Include="Views\CabeceraHistoriaClinica\Edit.cshtml" />
+    <Content Include="Views\CabeceraHistoriaClinica\Index.cshtml" />
+    <Content Include="Views\HistoriaClinica\Create.cshtml" />
+    <Content Include="Views\HistoriaClinica\Delete.cshtml" />
+    <Content Include="Views\HistoriaClinica\Details.cshtml" />
+    <Content Include="Views\HistoriaClinica\Edit.cshtml" />
+    <Content Include="Views\HistoriaClinica\Index.cshtml" />
+    <Content Include="Views\servicio\Create.cshtml" />
+    <Content Include="Views\servicio\Delete.cshtml" />
+    <Content Include="Views\servicio\Details.cshtml" />
+    <Content Include="Views\servicio\Edit.cshtml" />
+    <Content Include="Views\servicio\Index.cshtml" />
+    <Content Include="Views\venta\Create.cshtml" />
+    <Content Include="Views\venta\Delete.cshtml" />
+    <Content Include="Views\venta\Details.cshtml" />
+    <Content Include="Views\venta\Edit.cshtml" />
+    <Content Include="Views\venta\Index.cshtml" />
+    <Content Include="Views\tbl_cita\Create.cshtml" />
+    <Content Include="Views\tbl_cita\Delete.cshtml" />
+    <Content Include="Views\tbl_cita\Details.cshtml" />
+    <Content Include="Views\tbl_cita\Edit.cshtml" />
+    <Content Include="Views\tbl_cita\Index.cshtml" />
+    <Content Include="Views\DetalleVenta\Create.cshtml" />
+    <Content Include="Views\DetalleVenta\Delete.cshtml" />
+    <Content Include="Views\DetalleVenta\Details.cshtml" />
+    <Content Include="Views\DetalleVenta\Edit.cshtml" />
+    <Content Include="Views\DetalleVenta\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

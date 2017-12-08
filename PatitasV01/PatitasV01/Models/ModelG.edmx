@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BDD_PATITASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BDD_PATITASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -47,9 +47,9 @@
           <Key>
             <PropertyRef Name="dev_codigo" />
           </Key>
-          <Property Name="dev_codigo" Type="int" Nullable="false" />
+          <Property Name="dev_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dev_cantidad" Type="int" Nullable="false" />
-          <Property Name="ser_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ser_codigo" Type="int" Nullable="false" StoreGeneratedPattern="None" />
           <Property Name="dev_descripcion" Type="nchar" MaxLength="200" />
           <Property Name="ven_codigo" Type="int" Nullable="false" />
         </EntityType>
@@ -145,6 +145,18 @@
               <PropertyRef Name="usu_codigo" />
             </Principal>
             <Dependent Role="tbl_cabeceraHClinica">
+              <PropertyRef Name="usu_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_cita_tbl_usuario">
+          <End Role="tbl_usuario" Type="Self.tbl_usuario" Multiplicity="1" />
+          <End Role="tbl_cita" Type="Self.tbl_cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_usuario">
+              <PropertyRef Name="usu_codigo" />
+            </Principal>
+            <Dependent Role="tbl_cita">
               <PropertyRef Name="usu_codigo" />
             </Dependent>
           </ReferentialConstraint>
@@ -265,6 +277,10 @@
             <End Role="tbl_usuario" EntitySet="tbl_usuario" />
             <End Role="tbl_cabeceraHClinica" EntitySet="tbl_cabeceraHClinica" />
           </AssociationSet>
+          <AssociationSet Name="FK_tbl_cita_tbl_usuario" Association="Self.FK_tbl_cita_tbl_usuario">
+            <End Role="tbl_usuario" EntitySet="tbl_usuario" />
+            <End Role="tbl_cita" EntitySet="tbl_cita" />
+          </AssociationSet>
           <AssociationSet Name="FK_tbl_detalleCita_tbl_cita" Association="Self.FK_tbl_detalleCita_tbl_cita">
             <End Role="tbl_cita" EntitySet="tbl_cita" />
             <End Role="tbl_detalleCita" EntitySet="tbl_detalleCita" />
@@ -298,8 +314,7 @@
             <End Role="tbl_venta" EntitySet="tbl_venta" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BDD_PATITASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -335,6 +350,7 @@
           <Property Name="cit_descripcion" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
           <Property Name="usu_codigo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tbl_detalleCita" Relationship="Self.FK_tbl_detalleCita_tbl_cita" FromRole="tbl_cita" ToRole="tbl_detalleCita" />
+          <NavigationProperty Name="tbl_usuario" Relationship="BDD_PATITASModel.FK_tbl_cita_tbl_usuario" FromRole="tbl_cita" ToRole="tbl_usuario" />
         </EntityType>
         <EntityType Name="tbl_detalleCita">
           <Key>
@@ -351,9 +367,9 @@
           <Key>
             <PropertyRef Name="dev_codigo" />
           </Key>
-          <Property Name="dev_codigo" Type="Int32" Nullable="false" />
+          <Property Name="dev_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="dev_cantidad" Type="Int32" Nullable="false" />
-          <Property Name="ser_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ser_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="dev_descripcion" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
           <Property Name="ven_codigo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tbl_servicio" Relationship="Self.FK_tbl_detalleVenta_tbl_servicio" FromRole="tbl_detalleVenta" ToRole="tbl_servicio" />
@@ -430,6 +446,7 @@
           <Property Name="usu_direccion" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="tbl_cabeceraHClinica" Relationship="Self.FK_tbl_cabeceraHClinica_tbl_usuario" FromRole="tbl_usuario" ToRole="tbl_cabeceraHClinica" />
           <NavigationProperty Name="tbl_venta" Relationship="Self.FK_tbl_venta_tbl_usuario" FromRole="tbl_usuario" ToRole="tbl_venta" />
+          <NavigationProperty Name="tbl_cita" Relationship="BDD_PATITASModel.FK_tbl_cita_tbl_usuario" FromRole="tbl_usuario" ToRole="tbl_cita" />
         </EntityType>
         <EntityType Name="tbl_venta">
           <Key>
@@ -615,7 +632,23 @@
             <End Role="tbl_usuario" EntitySet="tbl_usuario" />
             <End Role="tbl_venta" EntitySet="tbl_venta" />
           </AssociationSet>
+          <AssociationSet Name="FK_tbl_cita_tbl_usuario" Association="BDD_PATITASModel.FK_tbl_cita_tbl_usuario">
+            <End Role="tbl_usuario" EntitySet="tbl_usuario" />
+            <End Role="tbl_cita" EntitySet="tbl_cita" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_tbl_cita_tbl_usuario">
+          <End Type="BDD_PATITASModel.tbl_usuario" Role="tbl_usuario" Multiplicity="1" />
+          <End Type="BDD_PATITASModel.tbl_cita" Role="tbl_cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_usuario">
+              <PropertyRef Name="usu_codigo" />
+            </Principal>
+            <Dependent Role="tbl_cita">
+              <PropertyRef Name="usu_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -769,7 +802,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>

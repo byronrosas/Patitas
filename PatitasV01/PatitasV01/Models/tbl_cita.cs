@@ -26,5 +26,6 @@ namespace PatitasV01.Models
         public int usu_codigo { get; set; }
     
         public virtual ICollection<tbl_detalleCita> tbl_detalleCita { get; set; }
+        public virtual tbl_usuario tbl_usuario { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace PatitasV01.Models
         {
             this.tbl_cabeceraHClinica = new HashSet<tbl_cabeceraHClinica>();
             this.tbl_venta = new HashSet<tbl_venta>();
+            this.tbl_cita = new HashSet<tbl_cita>();
         }
     
         public int usu_codigo { get; set; }
@@ -32,5 +33,6 @@ namespace PatitasV01.Models
     
         public virtual ICollection<tbl_cabeceraHClinica> tbl_cabeceraHClinica { get; set; }
         public virtual ICollection<tbl_venta> tbl_venta { get; set; }
+        public virtual ICollection<tbl_cita> tbl_cita { get; set; }
     }
 }
